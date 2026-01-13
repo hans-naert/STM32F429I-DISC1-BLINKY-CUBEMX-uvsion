@@ -37,4 +37,6 @@ build-gen:
       from-pack: ARM::CMSIS-Compiler@2.1.0
   groups:
     - group: Source Group 1
-      files: 
+      files:
+        - file: D:/cursussen/iot-systems-ao/voorbereiding/STM32F429I-DISC1-BLINKY-CUBEMX/retarget_stdio.c
+          category: sourceC
