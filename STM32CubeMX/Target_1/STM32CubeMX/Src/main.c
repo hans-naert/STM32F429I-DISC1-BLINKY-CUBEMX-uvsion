@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+#include "cmsis_os2.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -56,7 +57,15 @@ extern int stdio_init     (void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+__NO_RETURN static void app_main (void *argument) {
+  (void)argument;
+  // ...
+  for (;;) {
+	  printf("Hello World\n");
+		HAL_GPIO_TogglePin(LED0_GPIO_Port,LED0_Pin);
+		osDelay(1000);	
+	}
+}
 /* USER CODE END 0 */
 
 /**
@@ -95,13 +104,18 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+	// System Initialization
+  SystemCoreClockUpdate();
+  // ...
+ 
+  osKernelInitialize();                 // Initialize CMSIS-RTOS
+  osThreadNew(app_main, NULL, NULL);    // Create application main thread
+  osKernelStart();                      // Start thread execution
+  for (;;) {}
+	
+	
   while (1)
   {
-		printf("Hello World\n");
-		HAL_GPIO_TogglePin(LED0_GPIO_Port,LED0_Pin);
-		HAL_Delay(1000);
-		//HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);
-		//HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
