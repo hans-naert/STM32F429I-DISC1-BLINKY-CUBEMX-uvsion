@@ -23,6 +23,15 @@
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
 #include "cmsis_os2.h"
+#include "oefening1.h"
+#include "oefening2.h"
+#include "oefening3.h"
+#include "oefening4.h"
+#include "oefening5.h"
+#include "oefening6.h"
+#include "oefening7.h"
+#include "oefening8.h"
+#include "oefening9.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,6 +54,21 @@ UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 
+// Array van oefening function pointers
+typedef void (*OefeningFunc)(void);
+static const OefeningFunc oefeningen[] = {
+    oefening1,
+    oefening2,
+    oefening3,
+    oefening4,
+    oefening5,
+    oefening6,
+    oefening7,
+    oefening8,
+    oefening9
+};
+#define AANTAL_OEFENINGEN (sizeof(oefeningen) / sizeof(oefeningen[0]))
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -57,14 +81,91 @@ extern int stdio_init     (void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+/**
+ * @brief Voert een oefening uit met formatting
+ * @param nummer Oefeningnummer (1-based)
+ */
+void voer_oefening_uit(int nummer) {
+    if (nummer >= 1 && nummer <= (int)AANTAL_OEFENINGEN) {
+        printf("\n--- Start Oefening %d ---\n\n", nummer);
+        oefeningen[nummer - 1]();
+        printf("\n\n--- Einde Oefening %d ---\n", nummer);
+    }
+}
+
+/**
+ * @brief Toont het hoofdmenu en wacht op gebruikersinvoer
+ */
+void toon_menu(void) {
+    printf("\n");
+    printf("============================================\n");
+    printf("     MODERN C - OEFENINGEN MENU\n");
+    printf("============================================\n");
+    printf("1. Oefening 1: XOR Swap\n");
+    printf("2. Oefening 2: Matrix Wissel\n");
+    printf("3. Oefening 3: Buffer Overflow Trap\n");
+    printf("4. Oefening 4: Variadische functies\n");
+    printf("5. Oefening 5: Studentenbeheer Systeem\n");
+    printf("6. Oefening 6: Bit Manipulatie Macro\n");
+    printf("7. Oefening 7: Dynamische Log-Matrix\n");
+    printf("8. Oefening 8: Sensor-Data Parser\n");
+    printf("9. Oefening 9: Studenten Ranking & Search\n");
+    printf("0. Exit / Terug naar LED toggle\n");
+    printf("============================================\n");
+    printf("Kies een oefening (0-9): ");
+}
+
+/**
+ * @brief Hoofdapplicatie thread
+ */
 __NO_RETURN static void app_main (void *argument) {
   (void)argument;
-  // ...
+  
+  char keuze;
+  int running = 1;
+  
+  printf("\n\n*** Modern C Oefeningen Systeem ***\n");
+  printf("Welkom! Kies een oefening om uit te voeren.\n");
+  
+  while (running) {
+    toon_menu();
+    
+    // Lees karakter van UART
+    keuze = getchar();
+    printf("%c\n", keuze);  // Echo de keuze
+    
+    switch (keuze) {
+      case '1':
+      case '2':
+      case '3':
+      case '4':
+      case '5':
+      case '6':
+      case '7':
+      case '8':
+      case '9':
+        voer_oefening_uit(keuze - '0');
+        break;
+        
+      case '0':
+        printf("\n> Terug naar LED toggle mode...\n\n");
+        running = 0;
+        break;
+        
+      default:
+        printf("\n! Ongeldige keuze. Probeer opnieuw.\n");
+        break;
+    }
+  }
+  
+  // Na exit: simpele LED toggle loop
+  printf("LED toggle actief. Reset om terug te keren naar het menu.\n\n");
   for (;;) {
-	  printf("Hello World\n");
-		HAL_GPIO_TogglePin(LED0_GPIO_Port,LED0_Pin);
-		HAL_Delay(1000);	
-	}
+    printf("LED toggle...\n");
+    HAL_GPIO_TogglePin(LED0_GPIO_Port, LED0_Pin);
+    HAL_Delay(1000);	
+  }
 }
 /* USER CODE END 0 */
 

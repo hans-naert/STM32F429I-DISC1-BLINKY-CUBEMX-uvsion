@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>./</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -439,6 +439,51 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
+            </File>
+            <File>
+              <FileName>oefening1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\oefening1.c</FilePath>
+            </File>
+            <File>
+              <FileName>oefening2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\oefening2.c</FilePath>
+            </File>
+            <File>
+              <FileName>oefening3.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\oefening3.c</FilePath>
+            </File>
+            <File>
+              <FileName>oefening4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\oefening4.c</FilePath>
+            </File>
+            <File>
+              <FileName>oefening5.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\oefening5.c</FilePath>
+            </File>
+            <File>
+              <FileName>oefening6.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\oefening6.c</FilePath>
+            </File>
+            <File>
+              <FileName>oefening7.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\oefening7.c</FilePath>
+            </File>
+            <File>
+              <FileName>oefening8.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\oefening8.c</FilePath>
+            </File>
+            <File>
+              <FileName>oefening9.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\oefening9.c</FilePath>
             </File>
           </Files>
         </Group>
