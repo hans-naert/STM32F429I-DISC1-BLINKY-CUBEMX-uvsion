@@ -57,9 +57,28 @@ extern int stdio_init     (void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+void swap(int *p_a, int *p_b)
+{
+	int a=*p_a;
+	int b=*p_b;
+	a=a ^ b;
+	b= a ^b;
+	a= a^b;
+	printf("in swap routine: a is %d, b is %d\n",a,b);
+	*p_a=a;
+	*p_b=b;
+}
+
 __NO_RETURN static void app_main (void *argument) {
   (void)argument;
   // ...
+	
+	int a=5;
+	int b=77;
+	swap(&a,&b);
+	printf("a is %d, b is %d\n",a,b);
+	
   for (;;) {
 	  printf("Hello World\n");
 		HAL_GPIO_TogglePin(LED0_GPIO_Port,LED0_Pin);
