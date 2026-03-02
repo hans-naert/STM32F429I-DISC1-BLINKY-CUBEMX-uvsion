@@ -18,11 +18,11 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
 #include "cmsis_os2.h"
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -58,6 +58,19 @@ extern int stdio_init     (void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+void oefening3()
+{
+	
+	char dest[10] = {'\0'};
+	char src[] = "Dit is een string langer dan 10 karakters";
+	printf("lengte src %d %d \n", strlen(src), sizeof(src));
+	strncpy(dest,src,sizeof(dest)-1);
+	printf("dest: %s\n",dest);
+	
+	
+}
+
+
 void swap(int *p_a, int *p_b)
 {
 	int a=*p_a;
@@ -78,6 +91,8 @@ __NO_RETURN static void app_main (void *argument) {
 	int b=77;
 	swap(&a,&b);
 	printf("a is %d, b is %d\n",a,b);
+	
+	oefening3();
 	
   for (;;) {
 	  printf("Hello World\n");
