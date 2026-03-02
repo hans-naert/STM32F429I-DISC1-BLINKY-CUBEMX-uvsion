@@ -24,6 +24,7 @@
 #include "cmsis_os2.h"
 #include <string.h>
 #include <stdarg.h>
+#include <stdlib.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -95,15 +96,21 @@ int sum(int count, int* total, ...)
 	return 0;	
 }
 
-void oefening3()
+int oefening3()
 {
 	
-	char dest[10] = {'\0'};
+	//char dest[10] = {'\0'};
+	//char * dest=calloc(10,sizeof(char));
+	char *dest=malloc(10*sizeof(char));
+	if(dest==NULL)
+		return -1;
+	memset(dest,0,10*sizeof(char));
 	char src[] = "Dit is een string langer dan 10 karakters";
 	printf("lengte src %d %d \n", strlen(src), sizeof(src));
 	strncpy(dest,src,sizeof(dest)-1);
 	printf("dest: %s\n",dest);
-	
+	free(dest);
+	return 0;
 	
 }
 
