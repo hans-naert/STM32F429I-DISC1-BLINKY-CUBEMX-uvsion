@@ -59,6 +59,30 @@ extern int stdio_init     (void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+int add(int i, int j)
+{
+	return i+j;
+}
+
+int substract(int i, int j)
+{
+	return i-j;
+}
+
+int operate( int (*op) (int,int), int i, int j)
+{
+	return op(i,j);
+}
+
+int demo_function_pointer()
+{
+	int i=5;
+	int j=6;
+	printf("som %d\n",operate(add,i,j));
+	printf("verschil %d\n",operate(substract,i,j));
+	return 0;
+}
+
 int sum(int count, int* total, ...)
 {
 	va_list args;
@@ -109,6 +133,8 @@ __NO_RETURN static void app_main (void *argument) {
 	int total;
 	sum(4,&total,1,2,3,4);
 	printf("som is %d\n",total);
+	
+	demo_function_pointer();
 	
   for (;;) {
 	  printf("Hello World\n");
