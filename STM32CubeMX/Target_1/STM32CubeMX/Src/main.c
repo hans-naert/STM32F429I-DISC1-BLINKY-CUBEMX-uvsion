@@ -23,6 +23,7 @@
 #include <stdio.h>
 #include "cmsis_os2.h"
 #include <string.h>
+#include <stdarg.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,6 +58,18 @@ extern int stdio_init     (void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+int sum(int count, int* total, ...)
+{
+	va_list args;
+	va_start(args,total);
+	*total = 0;
+	for(int i=0;i<count;i++)
+	{
+		*total+= va_arg(args, int);
+	}
+	return 0;	
+}
 
 void oefening3()
 {
@@ -93,6 +106,9 @@ __NO_RETURN static void app_main (void *argument) {
 	printf("a is %d, b is %d\n",a,b);
 	
 	oefening3();
+	int total;
+	sum(4,&total,1,2,3,4);
+	printf("som is %d\n",total);
 	
   for (;;) {
 	  printf("Hello World\n");
